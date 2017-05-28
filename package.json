@@ -1,0 +1,11 @@
+{
+  "name": "value-store",
+  "version": "1.0.0",
+  "description": "CLI key - value store",
+  "main": "index.js",
+  "author": "Michael Dwyer",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
