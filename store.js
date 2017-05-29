@@ -2,11 +2,16 @@ const _ = require('lodash');
 
 class Store {
   constructor() {
+
+    //Object at index 0 contains the fully committed values
     this.stack = [{}];
   }
 
   get(key) {
-    console.log(this.stack[this.stack.length - 1][key]);
+
+    //Return most recently set pair value
+    const value = _.findLast(this.stack, (el) => el[key])[key];
+    console.log(value);
   }
 
   set(key, val) {
@@ -14,7 +19,10 @@ class Store {
   }
 
   sum() {
-    const result = _.reduce(this.stack[0], function(sum, val) {
+    const result = _.reduce(this.stack[0], (sum, val) => {
+
+      /* Test if string can be represented as a string
+       * Accounts for isNaN idiosyncrasies */
       if (!isNaN(val) && !isNaN(parseFloat(val))) {
         return sum + Number(val);
       }
@@ -30,6 +38,8 @@ class Store {
   }
 
   rollback() {
+
+    //Prevent a rollback on main object
     if (this.stack.length > 1) {
       this.stack.pop();
     } else {
@@ -38,8 +48,14 @@ class Store {
   }
 
   commit() {
-    const last = this.stack.pop();
-    _.merge(this.stack[this.stack.length - 1], last);
+
+    //Prevent a commit on main object
+    if (this.stack.length > 1) {
+      const last = this.stack.pop();
+      _.merge(this.stack[this.stack.length - 1], last);
+    } else {
+      console.log('Commit failed: No current transaction');
+    }
   }
 }
 

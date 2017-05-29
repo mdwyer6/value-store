@@ -27,7 +27,7 @@ const parse = function(command) {
 };
 
 const ask = function() {
-  prompt.get(['command'], function (err, result) {
+  prompt.get(['command'], (err, result) => {
     if (result.command === 'END') {
       return;
     }
@@ -36,6 +36,8 @@ const ask = function() {
     } else {
       parse(result.command);
     }
+    
+    //Recursively call ask function immediately after user input is processed
     ask();
   });
 };
