@@ -14,9 +14,9 @@ class Store {
   }
 
   sum() {
-    const result = _.reduce(this.stack[0], function(sum, n) {
-      if (typeof Number(n) === 'number') {
-        return sum + n;
+    const result = _.reduce(this.stack[0], function(sum, val) {
+      if (!isNaN(val) && !isNaN(parseFloat(val))) {
+        return sum + Number(val);
       }
 
       return sum;
@@ -30,11 +30,16 @@ class Store {
   }
 
   rollback() {
-    this.stack.pop();
+    if (this.stack.length > 1) {
+      this.stack.pop();
+    } else {
+      console.log('Rollback failed: No current transaction');
+    }
   }
 
   commit() {
-    
+    const last = this.stack.pop();
+    _.merge(this.stack[this.stack.length - 1], last);
   }
 }
 

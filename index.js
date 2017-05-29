@@ -11,13 +11,13 @@ const parse = function(command) {
     Store.get(args[1]);
   } else if (args.length === 1) {
     if (args[0] === 'SUM') {
-      utils.sum();
+      Store.sum();
     } else if (args[0] === 'BEGIN') {
-      utils.begin();
+      Store.begin();
     } else if (args[0] === 'ROLLBACK') {
-      utils.rollback();
+      Store.rollback();
     } else if (args[0] === 'COMMIT') {
-      utils.commit();
+      Store.commit();
     } else {
       console.error('Error: Invalid input');
     }
@@ -34,7 +34,6 @@ const ask = function() {
 
     if (err) {
     } else {
-      console.log(result, result.command);
       parse(result.command);
     }
     ask();
