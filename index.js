@@ -24,7 +24,7 @@ const parse = function(command) {
   } else {
     console.error('Error: Invalid input');
   }
-}
+};
 
 const ask = function() {
   prompt.get(['command'], function (err, result) {
@@ -38,6 +38,6 @@ const ask = function() {
     }
     ask();
   });
-}
+};
 
 ask();
