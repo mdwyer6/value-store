@@ -8,7 +8,7 @@ Navigate to project root and type `node index.js` to start. To stop type `END` t
 
 ## User Stories
 * I can interact with the store through the command line
-* I can ass a key value pair to the store with the command SET <key> <value>
+* I can add a key value pair to the store with the command SET <key> <value>
 * I can get a value that is in the store with the command GET <key>
 * I can type BEGIN to begin a new transaction
 * I can type ROLLBACK to get rid any changes made since BEGIN
